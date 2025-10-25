@@ -13,3 +13,10 @@ First, it receives the number of books and users from the administrator. Then, i
 + Edit user infos
 + Edit book infos
 
+### Inistalation
+```
+git remote add origin https://github.com/parsa-feyzi/library-menu-list.git
+git brench -m main
+git pull --rebase origin main
+git push -u origin main
+```
