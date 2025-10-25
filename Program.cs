@@ -17,7 +17,8 @@ namespace ConsoleApplication21
             Console.WriteLine(" 4_ Show books infos");
             Console.WriteLine(" 5_ Search in books by subject");
             Console.WriteLine(" 6_ Edit user infos");
-            Console.WriteLine(" 7_ Exit");
+            Console.WriteLine(" 7_ Edit book infos");
+            Console.WriteLine(" 8_ Exit");
             Console.WriteLine();
         }
 
@@ -45,7 +46,7 @@ namespace ConsoleApplication21
             Console.Write("select an option: ");
             int selectedValue = int.Parse(Console.ReadLine());
 
-            while (selectedValue != 7)
+            while (selectedValue != 8)
             {
                 switch (selectedValue)
                 {
@@ -91,9 +92,10 @@ namespace ConsoleApplication21
                     // handle show books list
                     case 4:
                         Console.Clear();
-                        for (int i = 0; i < booksNumber; i++) 
-                            Console.WriteLine("{0} {1}", booksTitleList[i], booksSubjectList[i]);
+                        for (int i = 0; i < booksNumber; i++)
+                            Console.WriteLine("{0} \t {1}", booksTitleList[i], booksSubjectList[i]);
                         break;
+
                     // handle search in books by subject
                     case 5:
                         Console.Clear();
@@ -101,22 +103,51 @@ namespace ConsoleApplication21
                         string searchedBookSubject = Console.ReadLine();
                         Console.Clear();
                         for (int i = 0; i < booksNumber; i++)
-                            if (booksSubjectList[i] == searchedBookSubject) 
+                            if (booksSubjectList[i] == searchedBookSubject)
                                 Console.WriteLine(booksTitleList[i]);
                         break;
+
                     // handle edit user
                     case 6:
                         Console.Clear();
                         Console.Write("enter user membership code: ");
-                        int membershipCode = int.Parse(Console.ReadLine());
+                        int userMembershipCode = int.Parse(Console.ReadLine());
+
+                        if (userMembershipCode >= usersFirstNameList.Length || userMembershipCode >= usersLastNameList.Length)
+                        {
+                            Console.Clear();
+                            break;
+                        }
 
                         Console.WriteLine();
 
                         Console.Write("enter new first name: ");
-                        usersFirstNameList[membershipCode] = Console.ReadLine();
+                        usersFirstNameList[userMembershipCode] = Console.ReadLine();
 
                         Console.Write("enter new last name: ");
-                        usersLastNameList[membershipCode] = Console.ReadLine();
+                        usersLastNameList[userMembershipCode] = Console.ReadLine();
+                        Console.Clear();
+                        break;
+
+                    // handle edit book
+                    case 7:
+                        Console.Clear();
+                        Console.Write("enter book membership code: ");
+                        int bookMembershipCode = int.Parse(Console.ReadLine());
+
+                        if (bookMembershipCode >= booksTitleList.Length || bookMembershipCode >= booksSubjectList.Length)
+                        {
+                            Console.Clear();
+                            break;
+                        }
+
+                        Console.WriteLine();
+
+                        Console.Write("enter new subject: ");
+                        booksSubjectList[bookMembershipCode] = Console.ReadLine();
+
+                        Console.Write("enter new title: ");
+                        booksTitleList[bookMembershipCode] = Console.ReadLine();
                         Console.Clear();
                         break;
                     default:
